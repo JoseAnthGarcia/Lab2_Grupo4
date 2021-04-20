@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Usuario;
+import com.example.demo.repository.AreaRepository;
 import com.example.demo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
+    @Autowired
+    AreaRepository areaRepository;
 
 
 
@@ -26,7 +29,9 @@ public class UsuarioController {
         return "usuario/list";
     }
     @GetMapping("/usuario/new")
-    public  String usuarioNew(){
+    public  String usuarioNew(Model model){
+
+        model.addAttribute("listaAreas", areaRepository.findAll());
         return "usuario/newForm";
     }
 
@@ -43,6 +48,7 @@ public class UsuarioController {
         if(usuarioOptional.isPresent()){
             Usuario usuario = usuarioOptional.get();
             model.addAttribute("usuario", usuario);
+            model.addAttribute("listaAreas", areaRepository.findAll());
             return "usuario/editForm";
         }else{
             return "redirect:/usuario";
