@@ -1,7 +1,13 @@
 package com.example.demo.repository;
 
-import javax.persistence.Entity;
+import com.example.demo.entity.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Entity
-public interface UsuarioRepository {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+
+
 }
