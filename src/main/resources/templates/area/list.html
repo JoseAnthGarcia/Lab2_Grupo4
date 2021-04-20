@@ -18,6 +18,10 @@
 </nav>
 <h2>Lista de Area</h2>
 <a class="btn btn-primary mt-4 mb-4" href="/area/agregar">Nuevo Area</a>
+<div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+<div th:if="${msgDanger != null}" th:text="${msgDanger}" class="alert alert-danger" role="alert"></div>
+<div th:if="${msgPrimary != null}" th:text="${msgPrimary}" class="alert alert-primary" role="alert"></div>
+
 <table class="table table-sm">
     <tr>
         <th>#</th>

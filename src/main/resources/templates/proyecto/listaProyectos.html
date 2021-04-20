@@ -16,8 +16,15 @@
         <a class="navbar-brand" href="/area/listar">Areas</a>
     </div>
 </nav>
+
+
 <h2>Lista de Proyectos</h2>
 <a class="btn btn-primary mt-4 mb-4" href="/proyecto/agregar">Nuevo Proyecto</a>
+
+<div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+<div th:if="${msgDanger != null}" th:text="${msgDanger}" class="alert alert-danger" role="alert"></div>
+<div th:if="${msgPrimary != null}" th:text="${msgPrimary}" class="alert alert-primary" role="alert"></div>
+
 <table class="table table-sm">
     <tr>
         <th>#</th>

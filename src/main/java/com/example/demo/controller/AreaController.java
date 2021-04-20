@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -34,9 +35,16 @@ public class AreaController {
         return "area/newAreaForm";
     }
 
-    @PostMapping("/guardar")
-    public String saveArea(AreaEntity area){
+    @PostMapping("/guardarE")
+    public String saveAreaE(AreaEntity area, RedirectAttributes attr){
         areaRepository.save(area);
+        attr.addFlashAttribute("msg", "Área actualizada exitosamente");
+        return "redirect:/area/listar";
+    }
+    @PostMapping("/guardar")
+    public String saveArea(AreaEntity area, RedirectAttributes attr){
+        areaRepository.save(area);
+        attr.addFlashAttribute("msgPrimary", "Área creada exitosamente");
         return "redirect:/area/listar";
     }
 
@@ -55,11 +63,12 @@ public class AreaController {
     }
 
     @GetMapping("/eliminar")
-    public String deleteArea(@RequestParam("id") int id){
+    public String deleteArea(@RequestParam("id") int id, RedirectAttributes attr){
         Optional<AreaEntity> areaOpt = areaRepository.findById(id);
 
         if(areaOpt.isPresent()){
             areaRepository.delete(areaOpt.get());
+            attr.addFlashAttribute("msgDanger", "Área eliminada exitosamente");
         }
 
         return "redirect:/area/listar";

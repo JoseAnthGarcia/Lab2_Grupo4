@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Editar usuario</h1>
-    <form method="post" th:action="@{'/usuario/guardar'}" th:object="${usuario}">
+    <form method="post" th:action="@{'/usuario/guardarE'}" th:object="${usuario}">
         <div>
             <label >Correo del usuario</label><br>
             <input class="form-control" name="correo" type="text" th:field="*{correo}">

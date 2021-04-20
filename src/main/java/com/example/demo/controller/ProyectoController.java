@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Proyecto;
+import com.example.demo.repository.ActividadRepository;
 import com.example.demo.repository.ProyectoRepository;
 import com.example.demo.repository.UsuarioRepository;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -22,6 +25,9 @@ public class ProyectoController {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+
+    @Autowired
+    ActividadRepository actividadRepository;
 
 
 
@@ -39,10 +45,18 @@ public class ProyectoController {
     }
 
 
-    @PostMapping("/guardar")
-    public  String proyectoSave (Proyecto proyecto){
+    @PostMapping("/guardarE")
+    public  String proyectoSaveE (Proyecto proyecto, RedirectAttributes attr){
         System.out.println(proyecto.getUsuario_owner());
         proyectoRepository.save(proyecto);
+        attr.addFlashAttribute("msg", "Proyecto actualizado exitosamente");
+        return "redirect:/proyecto/listar";
+    }
+    @PostMapping("/guardar")
+    public  String proyectoSave (Proyecto proyecto, RedirectAttributes attr){
+        System.out.println(proyecto.getUsuario_owner());
+        proyectoRepository.save(proyecto);
+        attr.addFlashAttribute("msgPrimary", "Proyecto creado exitosamente");
         return "redirect:/proyecto/listar";
     }
     @GetMapping("/edit")
@@ -56,6 +70,7 @@ public class ProyectoController {
             //-----
             model.addAttribute("proyecto", proyecto);
             model.addAttribute("listaUsuarios", usuarioRepository.findAll());
+            model.addAttribute("listaActividades", actividadRepository.findByIdproyecto(proyecto.getIdproyecto()));
             return "proyecto/editarProyecto";
         }else{
             return "redirect:/proyecto/listar";
@@ -63,10 +78,11 @@ public class ProyectoController {
     }
 
     @GetMapping ("/delete")
-    public  String deleteProyecto(@RequestParam("idproyecto") int idproyecto){
+    public  String deleteProyecto(@RequestParam("idproyecto") int idproyecto, RedirectAttributes attr){
         Optional<Proyecto> proyectoOptional = proyectoRepository.findById(idproyecto);
         if(proyectoOptional.isPresent()){
             proyectoRepository.deleteById(idproyecto);
+            attr.addFlashAttribute("msgDanger", "Proyecto eliminado exitosamente");
         }
         return "redirect:/proyecto/listar";
     }

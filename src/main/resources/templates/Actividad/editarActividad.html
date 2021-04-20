@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Actividad</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+        <a class="navbar-brand" href="/proyecto/listar">Proyectos</a>
+        <a class="navbar-brand" href="/usuario/listar">Usuarios</a>
+        <a class="navbar-brand" href="/area/listar">Areas</a>
+    </div>
+</nav>
+<h2>Nueva Actividad</h2>
+<hr/>
+<form method="post" th:action="@{'/actividad/guardarE'}" th:object="${actividad}" >
+    <div class="mb-3">
+        <label class="form-label">Nombre de la Actividad:</label>
+        <input type="text" class="form-control" th:field="*{nombreactividad}" name="nombreactividad">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripción de la Actividad:</label>
+        <input type="text" class="form-control" th:field="*{descripcion}" name="descripcion">
+    </div>
+    <div class="mb-3">
+        <label >Usuario Responsable:</label>
+        <select class="form-select"  id="disabledSelect"   name="usuario_owner">
+            <option selected disabled value="">Selecciona Responsable</option>
+
+            <option th:each="usuario : ${listaUsuarios}"
+                    th:value="${usuario.correo}"
+                    th:text="${usuario.correo}"
+                    th:selected="${usuario.correo}"
+            >Disabled select</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Peso:</label>
+        <input type="text" class="form-control" th:field="*{peso}"  name="peso">
+    </div>
+
+    <div class="mb-3">
+        <label >Estado:</label>
+        <select class="form-select"  id="estado"   name="estado">
+            <option value="0" th:selected="${actividad.getEstado()=='0'}">Pendiente</option>
+            <option value="1" th:selected="${actividad.getEstado()=='1'}"> Finalizado </option>
+        </select>
+        <input type="hidden"  class="form-control" id="idproyecto" name="idproyecto" th:value="*{Idproyecto}">
+        <input type="hidden"  class="form-control" id="idactividad" name="idactividad" th:value="*{idactividad}">
+
+    </div>
+
+    <a th:href="@{'/actividad/cancelar?idproyecto='+${actividad.getIdproyecto()}}" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+</body>
+</html>
+

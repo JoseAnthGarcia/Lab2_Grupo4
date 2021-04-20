@@ -19,6 +19,10 @@
     </nav>
     <h1>Lista de usuarios</h1>
     <a type="button" class="btn btn-primary" th:href="@{/usuario/new}"> Nuevo usuario</a>
+    <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+    <div th:if="${msgDanger != null}" th:text="${msgDanger}" class="alert alert-danger" role="alert"></div>
+    <div th:if="${msgPrimary != null}" th:text="${msgPrimary}" class="alert alert-primary" role="alert"></div>
+
     <table class="table">
         <tr>
             <th>#</th>

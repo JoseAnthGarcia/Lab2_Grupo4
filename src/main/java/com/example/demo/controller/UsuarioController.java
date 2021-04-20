@@ -37,10 +37,16 @@ public class UsuarioController {
     }
 
 
+    @PostMapping("/guardarE")
+    public  String usuarioSaveE (Usuario usuario, RedirectAttributes attr){
+        usuarioRepository.save(usuario);
+        attr.addFlashAttribute("msg", "Usuario actualizado exitosamente");
+        return "redirect:/usuario/listar";
+    }
     @PostMapping("/guardar")
     public  String usuarioSave (Usuario usuario, RedirectAttributes attr){
         usuarioRepository.save(usuario);
-        attr.addFlashAttribute("msg", "Usuario creado exitosamente");
+        attr.addFlashAttribute("msgPrimary", "Usuario creado exitosamente");
         return "redirect:/usuario/listar";
     }
     @GetMapping("/edit")
@@ -57,10 +63,11 @@ public class UsuarioController {
     }
 
     @GetMapping ("/delete")
-    public  String deleteUsuario(@RequestParam("correo") String correo){
+    public  String deleteUsuario(@RequestParam("correo") String correo, RedirectAttributes attr){
         Optional<Usuario> usuarioOptional =usuarioRepository.findById(correo);
         if(usuarioOptional.isPresent()){
             usuarioRepository.deleteById(correo);
+            attr.addFlashAttribute("msgDanger", "Usuario eliminado exitosamente");
         }
         return "redirect:/usuario/listar";
     }

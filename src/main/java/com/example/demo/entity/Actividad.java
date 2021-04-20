@@ -1,10 +1,9 @@
 package com.example.demo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name="actividades")
 public class Actividad {
 
     @Id
