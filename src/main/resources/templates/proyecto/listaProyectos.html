@@ -32,7 +32,7 @@
         <td th:text="${proyecto.usuario_owner}"></td>
 
         <td><a  type="button" class="btn btn-primary" th:href="@{'/proyecto/edit?idproyecto='+${proyecto.getIdproyecto()}}">Editar</a></td>
-        <td><a  type="button" class="btn btn-danger" th:href="@{'/usuario/delete?idproyecto='+${proyecto.getIdproyecto()}}">Borrar</a></td>
+        <td><a  type="button" class="btn btn-danger" th:href="@{'/proyecto/delete?idproyecto='+${proyecto.getIdproyecto()}}">Borrar</a></td>
     </tr>
 </table>
 </body>
