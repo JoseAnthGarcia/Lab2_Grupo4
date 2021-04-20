@@ -40,6 +40,7 @@ public class ProyectoController {
 
     @PostMapping("/proyecto/guardar")
     public  String proyectoSave (Proyecto proyecto){
+        System.out.println(proyecto.getUsuario_owner());
         proyectoRepository.save(proyecto);
         return "redirect:/proyecto/listar";
     }
@@ -49,6 +50,7 @@ public class ProyectoController {
         if(proyectoOptional.isPresent()){
             Proyecto proyecto = proyectoOptional.get();
             model.addAttribute("proyecto", proyecto);
+            model.addAttribute("listaUsuarios", usuarioRepository.findAll());
             return "proyecto/editarProyecto";
         }else{
             return "redirect:/proyecto/listar";
