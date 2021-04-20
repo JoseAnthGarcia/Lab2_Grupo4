@@ -9,30 +9,31 @@
 <body>
 <div class="container">
     <h1>Editar usuario</h1>
-    <form method="post" th:action="@{'/usuario/save'}" th:object="${usuario}">
-        <input type="hidden" th:field="*{correo}">
+    <form method="post" th:action="@{'/usuario/guardar'}" th:object="${usuario}">
         <div>
             <label >Correo del usuario</label><br>
-            <input name="correo" type="text" th:field="*{correo}">
+            <input class="form-control" name="correo" type="text" th:field="*{correo}">
 
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Area:</label>
+            <select id="disabledSelect" class="form-select" name="idarea">
+                <option th:each="area : ${listaAreas}"
+                        th:value="${area.idarea}"
+                        th:text="${area.nombrearea}"
+                        th:selected="${area.idarea == usuario.idarea}">Disabled select</option>
+            </select>
         </div>
         <div>
             <label >Nombre del usuario</label><br>
-            <input name="nombres" type="text" th:field="*{nombres}">
+            <input class="form-control" name="nombres" type="text" th:field="*{nombres}">
         </div>
         <div>
             <label >Apellidos del usuario</label><br>
-            <input name="apellidos" type="text" th:field="*{apellidos}">
+            <input class="form-control" name="apellidos" type="text" th:field="*{apellidos}">
         </div>
-        <label >Áreas</label><br>
-        <select th:field="*{idarea}">
-            <option th:each="area :${listaAreas}"
-                    th:value="${area.idarea}"
-                    th:text="${area.nombrearea}"></option>
-
-        </select><br>
         <a class="btn btn-danger mt-3" th:href="@{'/usuario/listar'}" >Cancelar</a>
-        <button class="btn btn-primary mt-3" type="submit" >Registrar</button>
+        <button class="btn btn-primary mt-3" type="submit" >Actualizar</button>
 
     </form>
 

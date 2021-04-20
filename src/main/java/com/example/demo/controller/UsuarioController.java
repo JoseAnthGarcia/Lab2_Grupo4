@@ -49,6 +49,7 @@ public class UsuarioController {
         if(usuarioOptional.isPresent()){
             Usuario usuario = usuarioOptional.get();
             model.addAttribute("usuario", usuario);
+            model.addAttribute("listaAreas", areaRepository.findAll());
             return "usuario/editForm";
         }else{
             return "redirect:/usuario";
@@ -60,9 +61,7 @@ public class UsuarioController {
         Optional<Usuario> usuarioOptional =usuarioRepository.findById(correo);
         if(usuarioOptional.isPresent()){
             usuarioRepository.deleteById(correo);
-
-            return "redirect:/usuario";
         }
-        return "redirect:/usuario";
+        return "redirect:/usuario/listar";
     }
 }
