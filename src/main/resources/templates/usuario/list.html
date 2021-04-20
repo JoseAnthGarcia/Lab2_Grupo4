@@ -7,9 +7,18 @@
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+        <a class="navbar-brand" href="/proyecto/listar">Proyectos</a>
+        <a class="navbar-brand" href="/usuario/listar">Usuarios</a>
+        <a class="navbar-brand" href="/area/listar">Areas</a>
+    </div>
+</nav>
     <div class="container">
         <h1 class="mb-3">Lista de usuarios</h1>
         <a type="button" class="btn btn-primary mb-3"th:href="@{/usuario/new}"> Nuevo usuario</a>
+
+        <div  class="alert alert-secondary" th:if="${msg!=null}" th:text="${msg}"></div>
         <table class="table">
             <tr>
                 <th>#</th>
