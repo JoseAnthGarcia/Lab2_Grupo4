@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de usuarios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Lista de usuarios</h1>
-<a type="button" class="btn btn-primary"th:href="@{/usuario/new}"> Nuevo usuario</a>
-<table>
-    <tr>
-        <th>#</th>
-        <th>Correo del usuario</th>
-        <th>Nombre del usuario</th>
-        <th>Apellido del usuario</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr th:each="user, v: ${usuarioList}">
-        <td th:text="${v.index+1}"></td>
-        <td th:text="${user.correo}"></td>
-        <td th:text="${user.nombres}"></td>
-        <td th:text="${user.apellidos}"></td>
-        <td><a  type="button" class="btn btn-primary" th:href="@{'/shipper/edit?correo='+${user.correo}}">Editar</a></td>
-        <td><a  type="button" class="btn btn-danger" th:href="@{'/shipper/delete?correo='+${user.correo}}">Borrar</a></td>
-    </tr>
-
-</table>
+<div class="container">
+    <h1>Lista de usuarios</h1>
+    <a type="button" class="btn btn-primary" th:href="@{/usuario/new}"> Nuevo usuario</a>
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Correo del usuario</th>
+            <th>Nombre del usuario</th>
+            <th>Apellido del usuario</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="user, v: ${usuarioList}">
+            <td th:text="${v.index+1}"></td>
+            <td th:text="${user.correo}"></td>
+            <td th:text="${user.nombres}"></td>
+            <td th:text="${user.apellidos}"></td>
+            <td><a type="button" class="btn btn-primary" th:href="@{'/shipper/edit?correo='+${user.correo}}">Editar</a>
+            </td>
+            <td><a type="button" class="btn btn-danger" th:href="@{'/shipper/delete?correo='+${user.correo}}">Borrar</a>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
