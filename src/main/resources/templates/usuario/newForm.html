@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Crear territorio</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
+    <div class="container">
+        <h1>Crear usuario</h1>
+        <form class="form" method="post" th:action="@{'/usuario/save'}">
+            <div >
+                <label >Correo del usuario</label><br>
+                <input name="correo" type="text" >
+            </div>
+            <div >
+                <label >Nombres del usuario</label><br>
+                <input name="nombres" type="text" >
+            </div>
+            <div >
+                <label >Apellidos del usuario</label><br>
+                <input name="apellidos" type="text" >
+            </div>
+            <div>
+                <label >Áreas</label> <br>
+                <select >
+                    <option th:each="area :${listaAreas}"
+                            th:value="${area.idarea}"
+                            th:text="${area.nombrearea}"></option>
+
+                </select>
+            </div>
+
+
+            <a class="btn btn-danger mt-3" th:href="@{'/usuario/listar'}" >Cancelar</a>
+            <button class="btn btn-primary mt-3" type="submit" >Registrar</button>
+        </form>
+    </div>
+
 
 </body>
 </html>

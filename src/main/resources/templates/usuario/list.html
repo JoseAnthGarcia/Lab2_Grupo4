@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-<h1>Lista de usuarios</h1>
-<a type="button" class="btn btn-primary"th:href="@{/usuario/new}"> Nuevo usuario</a>
-<table>
-    <tr>
-        <th>#</th>
-        <th>Correo del usuario</th>
-        <th>Nombre del usuario</th>
-        <th>Apellido del usuario</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr th:each="user, v: ${usuarioList}">
-        <td th:text="${v.index+1}"></td>
-        <td th:text="${user.correo}"></td>
-        <td th:text="${user.nombres}"></td>
-        <td th:text="${user.apellidos}"></td>
-        <td><a  type="button" class="btn btn-primary" th:href="@{'/shipper/edit?correo='+${user.correo}}">Editar</a></td>
-        <td><a  type="button" class="btn btn-danger" th:href="@{'/shipper/delete?correo='+${user.correo}}">Borrar</a></td>
-    </tr>
+    <div class="container">
+        <h1 class="mb-3">Lista de usuarios</h1>
+        <a type="button" class="btn btn-primary mb-3"th:href="@{/usuario/new}"> Nuevo usuario</a>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Correo del usuario</th>
+                <th>Nombre del usuario</th>
+                <th>Apellido del usuario</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="user, v: ${usuarioList}">
+                <td th:text="${v.index+1}"></td>
+                <td th:text="${user.correo}"></td>
+                <td th:text="${user.nombres}"></td>
+                <td th:text="${user.apellidos}"></td>
+                <td><a  type="button" class="btn btn-primary" th:href="@{'/usuario/edit?correo='+${user.correo}}">Editar</a></td>
+                <td><a  type="button" class="btn btn-danger" th:href="@{'/usuario/delete?correo='+${user.correo}}">Borrar</a></td>
+            </tr>
 
-</table>
+        </table>
+    </div>
+
 </body>
 </html>
