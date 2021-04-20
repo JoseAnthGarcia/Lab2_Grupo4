@@ -16,7 +16,7 @@
         <a class="navbar-brand" href="/area/listar">Areas</a>
     </div>
 </nav>
-<h2>Lista de Proyectos</h2>
+<h2>Lista de Area</h2>
 <a class="btn btn-primary mt-4 mb-4" href="/area/agregar">Nuevo Area</a>
 <table class="table table-sm">
     <tr>
@@ -28,8 +28,8 @@
     <tr th:each="area, contador : ${listaAreas}">
         <td th:text="${contador.index+1}">1</td>
         <td th:text="${area.nombrearea}">Jill</td>
-        <td><a class="btn btn-primary" th:href="@{'/proyecto/editar?id='+${area.idarea}}">Editar</a></td>
-        <td><a class="btn btn-danger" th:href="@{'/proyecto/eliminar?id='+${area.idarea}}">Borrar</a></td>
+        <td><a class="btn btn-primary" th:href="@{'/area/editar?id='+${area.idarea}}">Editar</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/area/eliminar?id='+${area.idarea}}">Borrar</a></td>
     </tr>
 </table>
 </body>

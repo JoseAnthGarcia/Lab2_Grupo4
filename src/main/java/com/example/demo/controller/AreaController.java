@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.AreaEntity;
 import com.example.demo.repository.AreaRepository;
+import com.example.demo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,18 @@ public class AreaController {
     @Autowired
     AreaRepository areaRepository;
 
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
     @GetMapping("/listar")
     public String listArea(Model model){
         model.addAttribute("listaAreas", areaRepository.findAll());
         return "area/list";
+    }
+
+    @GetMapping("/agregar")
+    public String newArea(){
+        return "area/newAreaForm";
     }
 
     @PostMapping("/guardar")
@@ -36,7 +45,8 @@ public class AreaController {
         Optional<AreaEntity> areaOpt = areaRepository.findById(id);
 
         if(areaOpt.isPresent()){
-            model.addAttribute("area",areaOpt.get());
+            model.addAttribute("listaUsuarioArea", usuarioRepository.findByIdarea(id));
+            model.addAttribute("area", areaOpt.get());
             return "area/edit";
         }else{
             return "redirect:/area/listar";

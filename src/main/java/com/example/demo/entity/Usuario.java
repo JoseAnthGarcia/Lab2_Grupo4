@@ -1,15 +1,16 @@
 package com.example.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.persistence.Entity;
 
 @Entity
 @Table(name="usuarios")
 public class Usuario {
+
     @Id
+    @Column(nullable = false)
     private String correo;
+    @Column(nullable = false)
     private int idarea;
     private String nombres;
     private String apellidos;
@@ -45,4 +46,5 @@ public class Usuario {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
 }
