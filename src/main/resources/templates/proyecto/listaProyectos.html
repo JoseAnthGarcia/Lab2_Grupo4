@@ -26,8 +26,14 @@
         <th></th>
         <th></th>
     </tr>
-    <tr th:each="proyecto, info : ${listaProyectos}">
-  </tr>
+    <tr th:each="proyecto, v: ${proyectoLista}">
+        <td th:text="${v.index+1}"></td>
+        <td th:text="${proyecto.nombreproyecto}"></td>
+        <td th:text="${proyecto.usuario_owner}"></td>
+
+        <td><a  type="button" class="btn btn-primary" th:href="@{'/proyecto/edit?idproyecto='+${proyecto.getIdproyecto()}}">Editar</a></td>
+        <td><a  type="button" class="btn btn-danger" th:href="@{'/usuario/delete?idproyecto='+${proyecto.getIdproyecto()}}">Borrar</a></td>
+    </tr>
 </table>
 </body>
 </html>
