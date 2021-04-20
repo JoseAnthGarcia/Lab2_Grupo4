@@ -10,4 +10,5 @@ public class Lab2Grupo4Application {
         SpringApplication.run(Lab2Grupo4Application.class, args);
     }
 
+
 }
