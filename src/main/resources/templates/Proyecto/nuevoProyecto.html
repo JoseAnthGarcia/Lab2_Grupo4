@@ -27,7 +27,7 @@
 
     <div class="mb-3">
         <label class="form-label">Usuario Responsable:</label>
-        <select id="disabledSelect" class="form-select" name="usuario_owner">
+        <select id="disabledSelect" class="form-control" name="usuario_owner">
             <option th:each="usuario : ${listaUsuarios}"
                     th:value="${usuario.correo}"
                     th:text="${usuario.nombres+' '+usuario.apellidos}">Disabled select</option>

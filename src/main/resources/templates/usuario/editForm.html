@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Area:</label>
-            <select id="disabledSelect" class="form-select" name="idarea">
+            <select id="disabledSelect" class="form-control" name="idarea">
                 <option th:each="area : ${listaAreas}"
                         th:value="${area.idarea}"
                         th:text="${area.nombrearea}"

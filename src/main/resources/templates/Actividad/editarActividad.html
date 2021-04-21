@@ -29,7 +29,7 @@
     </div>
     <div class="mb-3">
         <label >Usuario Responsable:</label>
-        <select class="form-select"  id="disabledSelect"   name="usuario_owner">
+        <select class="form-control"  id="disabledSelect"   name="usuario_owner">
             <option selected disabled value="">Selecciona Responsable</option>
 
             <option th:each="usuario : ${listaUsuarios}"
@@ -47,7 +47,7 @@
 
     <div class="mb-3">
         <label >Estado:</label>
-        <select class="form-select"  id="estado"   name="estado">
+        <select class="form-control"  id="estado"   name="estado">
             <option value="0" th:selected="${actividad.estado == false}">Pendiente</option>
             <option value="1" th:selected="${actividad.estado == true}">Actualizar</option>
         </select>
@@ -57,7 +57,7 @@
     </div>
 
     <a th:href="@{'/actividad/cancelar?idproyecto='+${actividad.getIdproyecto()}}" class="btn btn-danger">Cancelar</a>
-    <button type="submit" class="btn btn-primary">Registrar</button>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>
 </body>
 </html>
