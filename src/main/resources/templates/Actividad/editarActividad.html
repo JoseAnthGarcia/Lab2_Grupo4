@@ -49,7 +49,7 @@
         <label >Estado:</label>
         <select class="form-select"  id="estado"   name="estado">
             <option value="0" th:selected="${actividad.estado == false}">Pendiente</option>
-            <option value="1" th:selected="${actividad.estado == true}"> Actualizar </option>
+            <option value="1" th:selected="${actividad.estado == true}">Actualizar</option>
         </select>
         <input type="hidden"  class="form-control" id="idproyecto" name="idproyecto" th:value="*{Idproyecto}">
         <input type="hidden"  class="form-control" id="idactividad" name="idactividad" th:value="*{idactividad}">
