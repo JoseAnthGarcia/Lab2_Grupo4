@@ -73,7 +73,7 @@
         <td th:text="${actividad.nombreactividad}"></td>
         <td th:text="${actividad.usuario_owner}"></td>
         <td th:text="${actividad.peso}"></td>
-        <td th:text="${actividad.estado== '0' ? 'Pendiente':'Finalizado'}"></td>
+        <td th:text="${actividad.estado == false ? 'Pendiente':'Finalizado'}"></td>
 
         <td><a  type="button" class="btn btn-primary" th:href="@{'/actividad/edit?idactividad='+${actividad.getIdactividad()}}">Editar</a></td>
         <td><a  type="button" class="btn btn-danger" th:href="@{'/actividad/delete?idactividad='+${actividad.getIdactividad()}}">Borrar</a></td>

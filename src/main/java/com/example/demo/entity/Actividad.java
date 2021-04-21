@@ -19,7 +19,7 @@ public class Actividad {
     private String usuario_owner;
 
     private float peso;
-    private String estado;
+    private boolean estado;
 
     public Integer getIdactividad() {
         return idactividad;
@@ -69,12 +69,11 @@ public class Actividad {
         this.peso = peso;
     }
 
-    public String getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
 }
